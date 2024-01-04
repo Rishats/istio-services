@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ratings
-          image: skeletondocker/istio-services:ratings-48d8b8426e06f3fc7a9fb9aaf6ea9de3a510a178
+          image: skeletondocker/istio-services:ratings-
           ports:
             - containerPort: 8080
 
