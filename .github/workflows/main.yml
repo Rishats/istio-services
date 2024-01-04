@@ -51,3 +51,5 @@ jobs:
           git add ./platform/kube/*.yaml
           git commit -m "Update image ID to new_hash"
           git push
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
