@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: reviews
-          image: skeletondocker/istio-services:reviews-5e52e5d48fc8670e40cd5c0f2fd66e58a42f5c29
+          image: skeletondocker/istio-services:reviews-6d16b9b5ac24ff141ec716bb0b42957824b9cbf7
           ports:
             - containerPort: 8080
 
