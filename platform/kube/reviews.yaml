@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reviews
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reviews
+  template:
+    metadata:
+      labels:
+        app: reviews
+    spec:
+      containers:
+        - name: reviews
+          image: skeletondocker/istio-services:reviews-18c77d70a46037882ad67946e4cb6fd29335dee9
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reviews
+spec:
+  selector:
+    app: reviews
+  ports:
+    - port: 8080
+      name: http
