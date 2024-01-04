@@ -50,9 +50,9 @@ jobs:
 
       - name: Update Image in Kubernetes Manifests
         run: |
-          sed -i 's|skeletondocker/istio-services:product-[a-zA-Z0-9]*|skeletondocker/istio-services:product-${{ needs.build-and-push.outputs.sha }}|g' ./platform/kube/*.yaml
-          sed -i 's|skeletondocker/istio-services:ratings-[a-zA-Z0-9]*|skeletondocker/istio-services:ratings-${{ needs.build-and-push.outputs.sha }}|g' ./platform/kube/*.yaml
-          sed -i 's|skeletondocker/istio-services:reviews-[a-zA-Z0-9]*|skeletondocker/istio-services:reviews-${{ needs.build-and-push.outputs.sha }}|g' ./platform/kube/*.yaml
+          sed -i 's|skeletondocker/istio-services:product-[a-zA-Z0-9]*|skeletondocker/istio-services:product-${{ github.sha }}|g' ./platform/kube/*.yaml
+          sed -i 's|skeletondocker/istio-services:ratings-[a-zA-Z0-9]*|skeletondocker/istio-services:ratings-${{ github.sha }}|g' ./platform/kube/*.yaml
+          sed -i 's|skeletondocker/istio-services:reviews-[a-zA-Z0-9]*|skeletondocker/istio-services:reviews-${{ github.sha }}|g' ./platform/kube/*.yaml
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add ./platform/kube/*.yaml
