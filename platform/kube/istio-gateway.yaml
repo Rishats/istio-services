@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-services-gateway
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway # используйте стандартный сервис Istio Ingress Gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*" # это означает, что Gateway будет принимать трафик на любой хост
