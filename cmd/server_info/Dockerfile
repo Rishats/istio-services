@@ -10,10 +10,10 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # Копируйте исходный код в контейнер
-COPY cmd/server_info/*.go ./
+COPY . ./
 
 # Соберите приложение
-RUN CGO_ENABLED=0 GOOS=linux go build -v -o service
+RUN CGO_ENABLED=0 GOOS=linux go build -v -o service cmd/server_info/main.go
 
 # Используйте образ alpine для окончательного образа
 FROM alpine:latest

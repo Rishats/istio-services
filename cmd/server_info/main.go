@@ -1,9 +1,10 @@
-package server_info
+package main
 
 import (
 	"context"
 	"fmt"
 	"github.com/Rishats/istio-services/pkg/server_info"
+	"log"
 	"net"
 	"os"
 	"time"
@@ -39,7 +40,7 @@ func main() {
 	}
 	s := grpc.NewServer()
 	server_info.RegisterServerInfoServiceServer(s, &server{})
-	fmt.Println("Server is running on port 50051")
+	log.Println("Server is running on port 50051")
 	if err := s.Serve(lis); err != nil {
 		panic(err)
 	}

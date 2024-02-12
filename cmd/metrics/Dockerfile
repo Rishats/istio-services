@@ -13,10 +13,10 @@ RUN go mod download
 COPY . ./
 
 # Соберите приложение
-RUN CGO_ENABLED=0 GOOS=linux go build -v -o service cmd/product/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -v -o service cmd/metrics/main.go
 
 # Используйте образ alpine для окончательного образа
-FROM alpine:latest  
+FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/

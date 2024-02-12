@@ -28,3 +28,10 @@ services:
     ports:
       - "50051:50051"
 
+  metrics:
+    build:
+      context: .
+      dockerfile: cmd/metrics/Dockerfile
+    ports:
+      - "8083:8080"
+
