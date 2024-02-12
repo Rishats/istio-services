@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package api.server_info;
+
+option go_package = "github.com/Rishats/istio-services/ap/server_info;server_info";
+
+// The server information service definition.
+service ServerInfoService {
+    // Sends a request to get server information
+    rpc GetServerInfo(GetServerInfoRequest) returns (GetServerInfoResponse) {}
+}
+
+// The request message containing the request information.
+message GetServerInfoRequest {
+    // You can add request-specific fields here.
+}
+
+// The response message containing the server details.
+message GetServerInfoResponse {
+    // Basic server information
+    string hostname = 1; // The name of the host/server.
+    string environment = 2; // The environment where the service is running (e.g., production, staging, development).
+    string version = 3; // The version of the service.
+    string up_time = 4; // The up time of the service.
+  // Add more fields as needed, like memory usage, CPU usage, etc.
+}

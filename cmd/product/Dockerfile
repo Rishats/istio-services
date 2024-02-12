@@ -1,16 +1,16 @@
-# Используйте образ Go 1.20.1 как базовый
-FROM golang:1.20.1 as builder
+# Используйте образ Go 1.22.1 как базовый
+FROM golang:1.22.0 as builder
 
 # Установите рабочую директорию в контейнере
 WORKDIR /app
 
 # Копируйте go.mod и go.sum для управления зависимостями
-COPY go.mod ./
-#COPY go.sum ./
+COPY go.mod go.sum ./
+
 RUN go mod download
 
 # Копируйте исходный код в контейнер
-COPY *.go ./
+COPY cmd/product/*.go ./
 
 # Соберите приложение
 RUN CGO_ENABLED=0 GOOS=linux go build -v -o service
