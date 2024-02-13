@@ -1,5 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- gotk-components.yaml
-- gotk-sync.yaml
+  - gotk-components.yaml
+  - gotk-sync.yaml
+   # Include other YAML files for services and gateways
+  - metrics.yaml
+  - istio-gateway.yaml
+  - metrics-gateway.yaml
+  - product-gateway.yaml
+  - product.yaml
+  - ratings-gateway.yaml
+  - ratings.yaml
+  - reviews-gateway.yaml
+  - reviews.yaml
+  - server_info-gateway.yaml
+  - server_info.yaml
