@@ -21,7 +21,7 @@ type ServerInfo struct {
 
 func fetchServerInfo() (*ServerInfo, error) {
 	// Address of the server_info gRPC server
-	serverAddress := "server_info:50051"
+	serverAddress := "server-info:50051"
 
 	// Establish a connection to the server_info gRPC server
 	conn, err := grpc.Dial(serverAddress, grpc.WithInsecure(), grpc.WithBlock(), grpc.WithTimeout(5*time.Second))
@@ -54,23 +54,23 @@ func fetchServerInfo() (*ServerInfo, error) {
 func metricsHandler(w http.ResponseWriter, r *http.Request) {
 	info, err := fetchServerInfo()
 	if err != nil {
-		http.Error(w, "Failed to fetch server info", http.StatusInternalServerError)
-		log.Printf("Failed to fetch server info: %v", err)
+		http.Error(w, "[SERVICE Metrics] Failed to fetch server info", http.StatusInternalServerError)
+		log.Printf("[SERVICE Metrics] Failed to fetch server info: %v", err)
 		return
 	}
 
 	// Set content type to JSON
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(info); err != nil {
-		http.Error(w, "Failed to encode server info", http.StatusInternalServerError)
-		log.Printf("Failed to encode server info: %v", err)
+		http.Error(w, "[SERVICE Metrics] Failed to encode server info", http.StatusInternalServerError)
+		log.Printf("[SERVICE Metrics] Failed to encode server info: %v", err)
 	}
 }
 
 func main() {
 	http.HandleFunc("/metrics", metricsHandler)
 
-	log.Println("Starting web server on :8080")
+	log.Println("[SERVICE Metrics] Starting web server on :8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatalf("Failed to start web server: %v", err)
 	}

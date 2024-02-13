@@ -40,7 +40,7 @@ func main() {
 	}
 	s := grpc.NewServer()
 	server_info.RegisterServerInfoServiceServer(s, &server{})
-	log.Println("Server is running on port 50051")
+	log.Println("[SERVICE Server info] Server is running on port 50051")
 	if err := s.Serve(lis); err != nil {
 		panic(err)
 	}
