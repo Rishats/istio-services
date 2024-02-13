@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: product
-          image: skeletondocker/istio-services:product-6d16b9b5ac24ff141ec716bb0b42957824b9cbf7
+          image: skeletondocker/istio-services:product-ecf1a00e3cdcbc6364e096719ed266540ff2e70f
           ports:
             - containerPort: 8080
 
