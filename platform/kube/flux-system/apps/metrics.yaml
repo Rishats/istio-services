@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: metrics
-          image: skeletondocker/istio-services:metrics-02abde028553afe90d9448f240967b4be04745fa
+          image: skeletondocker/istio-services:metrics-521c9e69ad5c976cdef6b1c2e24cf61235467b7d
           ports:
             - containerPort: 8080
 
