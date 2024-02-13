@@ -4,14 +4,14 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
    # Include other YAML files for services and gateways
-  - metrics.yaml
-  - ../istio-gateway.yaml
-  - ../metrics-gateway.yaml
-  - ../product-gateway.yaml
-  - ../product.yaml
-  - ../ratings-gateway.yaml
-  - ../ratings.yaml
-  - ../reviews-gateway.yaml
-  - ../reviews.yaml
-  - ../server_info-gateway.yaml
-  - ../server_info.yaml
+  - apps/metrics.yaml
+  - apps/istio-gateway.yaml
+  - apps/metrics-gatewy.yaml
+  - apps/product-gateway.yaml
+  - apps/product.yaml
+  - apps/ratings-gateway.yaml
+  - apps/ratings.yaml
+  - apps/reviews-gateway.yaml
+  - apps/reviews.yaml
+  - apps/server_info-gateway.yaml
+  - apps/server_info.yaml
