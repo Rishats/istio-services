@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: server_info
+  name: server-info
   namespace: default
 spec:
   hosts:
@@ -11,9 +11,9 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /server_info
+            prefix: /server-info
       route:
         - destination:
-            host: server_info
+            host: server-info
             port:
               number: 50051

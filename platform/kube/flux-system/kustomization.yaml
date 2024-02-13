@@ -13,5 +13,5 @@ resources:
   - apps/ratings.yaml
   - apps/reviews-gateway.yaml
   - apps/reviews.yaml
-  - apps/server_info-gateway.yaml
-  - apps/server_info.yaml
+  - apps/server-info-gateway.yaml
+  - apps/server-info.yaml

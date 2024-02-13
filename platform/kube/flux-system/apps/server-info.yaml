@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server_info
+  name: server-info
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: server_info
+      app: server-info
   template:
     metadata:
       labels:
-        app: server_info
+        app: server-info
     spec:
       containers:
-        - name: server_info
-          image: skeletondocker/istio-services:server_info-5a766963d6d1a9dc805a3c2c674beada2cf9f2eb
+        - name: server-info
+          image: skeletondocker/istio-services:server-info-5a766963d6d1a9dc805a3c2c674beada2cf9f2eb
           ports:
             - containerPort: 50051
               protocol: TCP
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: server_info
+  name: server-info
   namespace: default
 spec:
   selector:
-    app: server_info
+    app: server-info
   ports:
     - port: 50051
       name: grpc
