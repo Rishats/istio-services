@@ -6,7 +6,7 @@ resources:
    # Include other YAML files for services and gateways
   - apps/metrics.yaml
   - apps/istio-gateway.yaml
-  - apps/metrics-gatewy.yaml
+  - apps/metrics-gateway.yaml
   - apps/product-gateway.yaml
   - apps/product.yaml
   - apps/ratings-gateway.yaml
