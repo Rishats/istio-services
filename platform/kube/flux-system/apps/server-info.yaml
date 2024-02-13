@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: server-info
-          image: skeletondocker/istio-services:server_info-6b1ea2d5f73efe170bad532fa948af21b37d1b75
+          image: skeletondocker/istio-services:server_info-04150219df454cb9192926fda7fba33386ec76b0
           ports:
             - containerPort: 50051
               protocol: TCP
