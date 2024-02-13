@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"google.golang.org/grpc/metadata"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/Rishats/istio-services/pkg/server_info"
@@ -19,7 +21,7 @@ type ServerInfo struct {
 	Uptime      string `json:"uptime"`
 }
 
-func fetchServerInfo() (*ServerInfo, error) {
+func fetchServerInfo(r *http.Request) (*ServerInfo, error) {
 	// Address of the server_info gRPC server
 	serverAddress := "server-info:50051"
 
@@ -32,6 +34,26 @@ func fetchServerInfo() (*ServerInfo, error) {
 
 	// Create a gRPC client
 	client := server_info.NewServerInfoServiceClient(conn)
+
+	istioHeaders := []string{
+		"x-request-id", "traceparent", "tracestate",
+		"x-ot-span-context", "x-datadog-trace-id",
+		"x-datadog-parent-id", "x-datadog-sampling-priority",
+		"x-b3-traceid", "x-b3-spanid", "x-b3-parentspanid",
+		"x-b3-sampled", "x-b3-flags", "x-cloud-trace-context",
+		"grpc-trace-bin", "sw8", "end-user", "user-agent",
+		"cookie", "authorization", "jwt",
+	}
+
+	// Создание контекста с метаданными
+	md := metadata.New(map[string]string{})
+	for _, header := range istioHeaders {
+		if value := r.Header.Get(header); value != "" {
+			// Добавление заголовка и его значения в метаданные
+			md.Append(strings.ToLower(header), value)
+		}
+	}
+	ctx := metadata.NewOutgoingContext(context.Background(), md)
 
 	// Create a context with timeout
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -52,7 +74,7 @@ func fetchServerInfo() (*ServerInfo, error) {
 }
 
 func metricsHandler(w http.ResponseWriter, r *http.Request) {
-	info, err := fetchServerInfo()
+	info, err := fetchServerInfo(r)
 	if err != nil {
 		http.Error(w, "[SERVICE Metrics] Failed to fetch server info", http.StatusInternalServerError)
 		log.Printf("[SERVICE Metrics] Failed to fetch server info: %v", err)
